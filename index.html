@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factura · Deli Santa Maria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#fbf8f1;--ink:#2c271f;--ink-soft:#6b6253;--gold:#d4a843;--gold-deep:#b48a2a;--line:#e6ddcb;--line-soft:#efe8d8;--grey-fill:#f3eee2;--shadow:0 18px 50px -22px rgba(60,48,24,.45);}
+  *{box-sizing:border-box;}html,body{margin:0;padding:0;}
+  body{background:#ece5d6;color:var(--ink);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;padding:0 0 80px;}
+  .toolbar{position:sticky;top:0;z-index:50;background:rgba(34,29,22,.96);backdrop-filter:blur(8px);color:#f4ecd9;display:flex;flex-wrap:wrap;align-items:center;gap:18px;padding:12px 22px;border-bottom:2px solid var(--gold);}
+  .toolbar .brandmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;letter-spacing:.5px;color:var(--gold);margin-right:auto;display:flex;align-items:center;gap:9px;}
+  .toolbar .brandmark span{font-family:'Caveat',cursive;color:#cabfa8;font-size:15px;}
+  .ctrl{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#cabfa8;white-space:nowrap;}
+  .ctrl input[type=number]{width:54px;}
+  .ctrl input,.ctrl select{background:#3a3327;border:1px solid #54493491;color:#f4ecd9;border-radius:6px;padding:5px 7px;font-family:inherit;font-size:12.5px;}
+  .ctrl input[type=checkbox]{width:15px;height:15px;accent-color:var(--gold);}
+  .tbtn{border:1px solid #5a4f38;background:#332d22;color:#f4ecd9;border-radius:7px;padding:7px 13px;font:inherit;font-size:12.5px;cursor:pointer;}
+  .tbtn.primary{background:var(--gold);color:#2c271f;border-color:var(--gold);font-weight:600;}
+  .sheet-wrap{display:flex;justify-content:center;padding:34px 18px;}
+  .sheet{width:210mm;max-width:100%;min-height:297mm;background:var(--paper);box-shadow:var(--shadow);padding:22mm 20mm 16mm;position:relative;border-top:5px solid var(--gold);}
+  .logo-mast{display:flex;justify-content:center;margin:0 0 14px;}
+  .logo-mast img{width:108px;height:108px;object-fit:contain;}
+  .head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;}
+  .issuer .owner{font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:17px;color:var(--gold-deep);margin-top:1px;}
+  .issuer .meta{margin-top:10px;font-size:11.5px;color:var(--ink-soft);line-height:1.55;max-width:230px;}
+  .doc{text-align:right;flex-shrink:0;}
+  .doc .label{font-size:13px;letter-spacing:5px;font-weight:600;color:var(--gold-deep);text-transform:uppercase;}
+  .doc .rows{margin-top:12px;font-size:12px;color:var(--ink-soft);}
+  .doc .rows .r{display:flex;justify-content:flex-end;gap:10px;align-items:baseline;margin-top:3px;}
+  .doc .rows .r b{color:var(--ink-soft);font-weight:500;min-width:74px;text-align:right;}
+  .doc .rows .r .v{color:var(--ink);font-weight:600;font-size:12.5px;min-width:96px;text-align:right;}
+  .rule{height:1px;background:var(--line);margin:20px 0;}
+  .rule.gold{height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:6px 0 0;}
+  .midgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;}
+  .eyebrow{font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:7px;}
+  .client .cname{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--ink);line-height:1.1;}
+  .client .cline{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+  table.items{width:100%;border-collapse:collapse;margin-top:6px;}
+  table.items thead th{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;text-align:left;padding:0 0 8px;border-bottom:2px solid var(--gold);}
+  table.items thead th.amt{text-align:right;}
+  table.items tbody td{padding:11px 0;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+  table.items tbody td.amt{text-align:right;white-space:nowrap;}
+  .del{border:none;background:none;color:#c9b88e;cursor:pointer;font-size:16px;line-height:1;width:22px;opacity:0;}
+  tr:hover .del{opacity:1;}
+  .addline{margin-top:12px;border:1px dashed var(--line);background:none;color:var(--ink-soft);border-radius:7px;padding:8px 14px;font:inherit;font-size:12px;cursor:pointer;}
+  .totals{display:flex;justify-content:flex-end;margin-top:18px;}
+  .totals .box{width:270px;}
+  .totals .row{display:flex;justify-content:space-between;padding:7px 0;font-size:12.5px;color:var(--ink-soft);}
+  .totals .row .v{color:var(--ink);font-weight:500;}
+  .totals .row.sub{border-top:1px solid var(--line);}
+  .totals .row.grand{margin-top:6px;padding:12px 16px;background:var(--ink);color:var(--paper);border-radius:8px;}
+  .totals .row.grand .lbl{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;}
+  .totals .row.grand .v{color:var(--gold);font-weight:600;font-size:18px;}
+  .pay{margin-top:30px;padding:18px 20px;background:var(--grey-fill);border-radius:10px;border:1px solid var(--line);}
+  .pay .grid{display:grid;grid-template-columns:auto 1fr;gap:5px 18px;font-size:12px;margin-top:8px;}
+  .foot{margin-top:30px;display:flex;justify-content:space-between;align-items:flex-end;padding-top:14px;border-top:1px solid var(--line);}
+  .foot .thanks{font-family:'Caveat',cursive;font-size:21px;color:var(--gold-deep);}
+  .f{font:inherit;color:inherit;background:transparent;border:none;border-radius:4px;padding:1px 3px;margin:-1px -3px;width:100%;}
+  .f:hover{background:#f0e8d6;}.f:focus{outline:none;background:#fff;box-shadow:0 0 0 2px var(--gold);}
+  textarea.f{resize:none;overflow:hidden;line-height:inherit;display:block;}
+  input.f.amount{text-align:right;font-variant-numeric:tabular-nums;}
+  .f.right{text-align:right;}
+  ::placeholder{color:#c4b89a;font-style:italic;}
+  @media print{@page{size:A4;margin:0;}body{background:#fff;padding:0;}.toolbar{display:none!important;}.sheet-wrap{padding:0;}.sheet{box-shadow:none;width:auto;min-height:auto;}.del,.addline{display:none!important;}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div class="brandmark">Deli Santa Maria <span>· facturación</span></div>
+  <label class="ctrl">IVA <input type="number" id="vatRate" value="10" min="0" max="100" step="0.5"> %</label>
+  <label class="ctrl"><input type="checkbox" id="inclVat"> Los importes incluyen IVA</label>
+  <button class="tbtn" id="newBtn">Nueva factura</button>
+  <button class="tbtn" id="saveBtn">Guardar datos</button>
+  <button class="tbtn primary" id="printBtn">Imprimir / PDF</button>
+</div>
+<div class="sheet-wrap">
+  <div class="sheet" id="sheet">
+    <div class="logo-mast"><img src="" alt="Deli Santa Maria" onerror="this.style.display='none'"></div>
+    <div class="head">
+      <div class="issuer">
+        <input class="f owner" id="i_owner" value="Shiri Keret" style="font-size:22px;">
+        <div class="meta">
+          NIF <input class="f" id="i_nif" value="B10837268" style="width:auto;display:inline;">
+          <textarea class="f" id="i_addr" rows="2">Polígono 07, Parcela 67, C.P. 07141 Marratxí, Mallorca, España</textarea>
+        </div>
+      </div>
+      <div class="doc">
+        <div class="label">Factura</div>
+        <div class="rows">
+          <div class="r"><b>Nº</b><span class="v"><input class="f right" id="d_num" value="2026-002"></span></div>
+          <div class="r"><b>Fecha</b><span class="v"><input class="f right" id="d_date" value=""></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="rule gold"></div><div class="rule"></div>
+    <div class="midgrid">
+      <div class="client">
+        <div class="eyebrow">Facturar a</div>
+        <input class="f cname" id="c_name" value="Mills and Honey S.L.">
+        <div class="cline">CIF <input class="f" id="c_cif" value="B16536856" style="width:auto;display:inline;"></div>
+        <textarea class="f cline" id="c_addr" rows="2">Carrer Joan Rosselló de Son Forteza 36, bajos
+07340 Alaró, Mallorca</textarea>
+      </div>
+      <div class="concept">
+        <div class="eyebrow">Concepto</div>
+        <input class="f" id="c_concept" value="Evento de empresa">
+      </div>
+    </div>
+    <table class="items">
+      <thead><tr><th style="width:34px;"></th><th>Descripción</th><th class="amt" style="width:140px;">Importe</th></tr></thead>
+      <tbody id="itemsBody"></tbody>
+    </table>
+    <button class="addline" id="addBtn">＋ Añadir línea</button>
+    <div class="totals"><div class="box">
+      <div class="row sub"><span>Base imponible</span><span class="v" id="t_base">—</span></div>
+      <div class="row"><span id="t_vatlbl">IVA (10%)</span><span class="v" id="t_vat">—</span></div>
+      <div class="row grand"><span class="lbl">Total</span><span class="v" id="t_total">—</span></div>
+    </div></div>
+    <div class="pay">
+      <div class="eyebrow">Datos de pago · transferencia</div>
+      <div class="grid">
+        <b>Beneficiario</b><span class="v"><input class="f" id="p_benef" value="Shiri Keret — Deli Santa Maria"></span>
+        <b>Banco</b><span class="v"><input class="f" id="p_bank" value="CaixaBank"></span>
+        <b>IBAN</b><span class="v"><input class="f" id="p_iban" value="ES98 2100 9019 0402 0051 1200"></span>
+        <b>SWIFT/BIC</b><span class="v"><input class="f" id="p_swift" value="CAIXESBBXXX"></span>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="thanks">¡Gracias!</div>
+      <div class="site">
+        <input class="f right" id="f_site" value="deli-caffe.com" style="font-weight:600;color:var(--gold-deep);">
+        <div><input class="f right" id="f_note" value="Santa María del Camí · Mallorca"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const eur=new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'});
+const $=id=>document.getElementById(id);
+const body=$('itemsBody');
+function parseNum(s){if(s==null)return 0;s=String(s).trim().replace(/\s|€/g,'').replace(/\.(?=\d{3}\b)/g,'').replace(',','.');const n=parseFloat(s);return isNaN(n)?0:n;}
+function addRow(desc='',amount=''){const tr=document.createElement('tr');tr.innerHTML='<td><button class="del">\u00D7</button></td><td><textarea class="f" rows="1"></textarea></td><td class="amt"><input class="f amount" inputmode="decimal" placeholder="0,00"></td>';tr.querySelector('textarea').value=desc;tr.querySelector('input.amount').value=amount;tr.querySelector('.del').onclick=()=>{tr.remove();recalc();};tr.querySelector('input.amount').addEventListener('input',recalc);body.appendChild(tr);autoGrowAll();}
+function recalc(){const rate=parseNum($('vatRate').value)/100;const incl=$('inclVat').checked;let sum=0;body.querySelectorAll('input.amount').forEach(i=>sum+=parseNum(i.value));let base,vat,total;if(incl){total=sum;base=total/(1+rate);vat=total-base;}else{base=sum;vat=base*rate;total=base+vat;}$('t_base').textContent=eur.format(base);$('t_vat').textContent=eur.format(vat);$('t_total').textContent=eur.format(total);$('t_vatlbl').textContent='IVA ('+(parseNum($('vatRate').value))+'%)';}
+function autoGrow(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
+function autoGrowAll(){document.querySelectorAll('textarea.f').forEach(autoGrow);}
+document.addEventListener('input',e=>{if(e.target.matches('textarea.f'))autoGrow(e.target);});
+const ISSUER_KEYS=['i_owner','i_nif','i_addr','p_benef','p_bank','p_iban','p_swift','f_site','f_note','vatRate'];
+function saveIssuer(){try{const data={};ISSUER_KEYS.forEach(k=>data[k]=$(k).value);data.lastNum=$('d_num').value;localStorage.setItem('deliFacturaIssuer',JSON.stringify(data));}catch(e){}}
+function loadIssuer(){try{const raw=localStorage.getItem('deliFacturaIssuer');if(!raw)return;const data=JSON.parse(raw);ISSUER_KEYS.forEach(k=>{if(data[k]!=null&&$(k))$(k).value=data[k];});}catch(e){}}
+function nextNumber(cur){const m=String(cur).match(/^(.*?)(\d+)(\D*)$/);if(!m)return cur;const n=(parseInt(m[2],10)+1).toString().padStart(m[2].length,'0');return m[1]+n+m[3];}
+function todayES(){const d=new Date();return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();}
+$('vatRate').addEventListener('input',recalc);$('inclVat').addEventListener('change',recalc);
+$('addBtn').onclick=()=>addRow();$('printBtn').onclick=()=>window.print();
+$('saveBtn').onclick=saveIssuer;$('newBtn').onclick=()=>{$('d_num').value=nextNumber($('d_num').value);$('d_date').value=todayES();$('c_name').value='';$('c_cif').value='';$('c_addr').value='';$('c_concept').value='';body.innerHTML='';addRow();recalc();autoGrowAll();};
+loadIssuer();$('d_date').value=todayES();addRow('Catering para un evento','202,27');recalc();setTimeout(autoGrowAll,200);
+</script>
+</body>
+</html>
