@@ -15,57 +15,58 @@
   .toolbar .brandmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;letter-spacing:.5px;color:var(--gold);margin-right:auto;display:flex;align-items:center;gap:9px;}
   .toolbar .brandmark span{font-family:'Caveat',cursive;color:#cabfa8;font-size:15px;}
   .ctrl{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#cabfa8;white-space:nowrap;}
-  .ctrl input[type=number]{width:54px;}
-  .ctrl input,.ctrl select{background:#3a3327;border:1px solid #54493491;color:#f4ecd9;border-radius:6px;padding:5px 7px;font-family:inherit;font-size:12.5px;}
+  .ctrl input[type=number]{width:54px;}.ctrl input,.ctrl select{background:#3a3327;border:1px solid #54493491;color:#f4ecd9;border-radius:6px;padding:5px 7px;font-family:inherit;font-size:12.5px;}
   .ctrl input[type=checkbox]{width:15px;height:15px;accent-color:var(--gold);}
-  .tbtn{border:1px solid #5a4f38;background:#332d22;color:#f4ecd9;border-radius:7px;padding:7px 13px;font:inherit;font-size:12.5px;cursor:pointer;}
-  .tbtn.primary{background:var(--gold);color:#2c271f;border-color:var(--gold);font-weight:600;}
+  .tbtn{border:1px solid #5a4f38;background:#332d22;color:#f4ecd9;border-radius:7px;padding:7px 13px;font:inherit;font-size:12.5px;cursor:pointer;transition:background .15s,border-color .15s;}
+  .tbtn:hover{background:#433a29;border-color:var(--gold);}.tbtn.primary{background:var(--gold);color:#2c271f;border-color:var(--gold);font-weight:600;}.tbtn.primary:hover{background:#e2b85a;}
+  .toolbar :focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
   .sheet-wrap{display:flex;justify-content:center;padding:34px 18px;}
   .sheet{width:210mm;max-width:100%;min-height:297mm;background:var(--paper);box-shadow:var(--shadow);padding:22mm 20mm 16mm;position:relative;border-top:5px solid var(--gold);}
-  .logo-mast{display:flex;justify-content:center;margin:0 0 14px;}
-  .logo-mast img{width:108px;height:108px;object-fit:contain;}
+  .bsd{position:absolute;top:6mm;right:7mm;font-size:8px;color:#bcae90;letter-spacing:.5px;}
+  .logo-mast{display:flex;justify-content:center;margin:0 0 14px;}.logo-mast img{width:108px;height:108px;object-fit:contain;}
+  @media(max-width:680px){.logo-mast img{width:88px;height:88px;}}
   .head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;}
   .issuer .owner{font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:17px;color:var(--gold-deep);margin-top:1px;}
   .issuer .meta{margin-top:10px;font-size:11.5px;color:var(--ink-soft);line-height:1.55;max-width:230px;}
-  .doc{text-align:right;flex-shrink:0;}
-  .doc .label{font-size:13px;letter-spacing:5px;font-weight:600;color:var(--gold-deep);text-transform:uppercase;}
+  .doc{text-align:right;flex-shrink:0;}.doc .label{font-size:13px;letter-spacing:5px;font-weight:600;color:var(--gold-deep);text-transform:uppercase;}
   .doc .rows{margin-top:12px;font-size:12px;color:var(--ink-soft);}
   .doc .rows .r{display:flex;justify-content:flex-end;gap:10px;align-items:baseline;margin-top:3px;}
   .doc .rows .r b{color:var(--ink-soft);font-weight:500;min-width:74px;text-align:right;}
   .doc .rows .r .v{color:var(--ink);font-weight:600;font-size:12.5px;min-width:96px;text-align:right;}
-  .rule{height:1px;background:var(--line);margin:20px 0;}
-  .rule.gold{height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:6px 0 0;}
+  .rule{height:1px;background:var(--line);margin:20px 0;}.rule.gold{height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:6px 0 0;}
   .midgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;}
   .eyebrow{font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:7px;}
   .client .cname{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--ink);line-height:1.1;}
-  .client .cline{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+  .client .cline{font-size:12px;color:var(--ink-soft);margin-top:2px;}.concept{text-align:left;}.concept .cval{font-size:13px;color:var(--ink);font-weight:500;}
   table.items{width:100%;border-collapse:collapse;margin-top:6px;}
   table.items thead th{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;text-align:left;padding:0 0 8px;border-bottom:2px solid var(--gold);}
   table.items thead th.amt{text-align:right;}
   table.items tbody td{padding:11px 0;border-bottom:1px solid var(--line-soft);vertical-align:top;}
   table.items tbody td.amt{text-align:right;white-space:nowrap;}
-  .del{border:none;background:none;color:#c9b88e;cursor:pointer;font-size:16px;line-height:1;width:22px;opacity:0;}
-  tr:hover .del{opacity:1;}
-  .addline{margin-top:12px;border:1px dashed var(--line);background:none;color:var(--ink-soft);border-radius:7px;padding:8px 14px;font:inherit;font-size:12px;cursor:pointer;}
-  .totals{display:flex;justify-content:flex-end;margin-top:18px;}
-  .totals .box{width:270px;}
+  .del{border:none;background:none;color:#c9b88e;cursor:pointer;font-size:16px;line-height:1;width:22px;opacity:0;transition:opacity .15s,color .15s;}
+  tr:hover .del{opacity:1;}.del:hover{color:#c0392b;}
+  .addline{margin-top:12px;border:1px dashed var(--line);background:none;color:var(--ink-soft);border-radius:7px;padding:8px 14px;font:inherit;font-size:12px;cursor:pointer;transition:border-color .15s,color .15s;}
+  .addline:hover{border-color:var(--gold);color:var(--gold-deep);}
+  .totals{display:flex;justify-content:flex-end;margin-top:18px;}.totals .box{width:270px;}
   .totals .row{display:flex;justify-content:space-between;padding:7px 0;font-size:12.5px;color:var(--ink-soft);}
-  .totals .row .v{color:var(--ink);font-weight:500;}
-  .totals .row.sub{border-top:1px solid var(--line);}
-  .totals .row.grand{margin-top:6px;padding:12px 16px;background:var(--ink);color:var(--paper);border-radius:8px;}
-  .totals .row.grand .lbl{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;}
+  .totals .row .v{color:var(--ink);font-weight:500;}.totals .row.sub{border-top:1px solid var(--line);}
+  .totals .row.grand{margin-top:6px;padding:12px 16px;background:var(--ink);color:var(--paper);border-radius:8px;font-size:15px;}
+  .totals .row.grand .lbl{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:.5px;}
   .totals .row.grand .v{color:var(--gold);font-weight:600;font-size:18px;}
   .pay{margin-top:30px;padding:18px 20px;background:var(--grey-fill);border-radius:10px;border:1px solid var(--line);}
   .pay .grid{display:grid;grid-template-columns:auto 1fr;gap:5px 18px;font-size:12px;margin-top:8px;}
+  .pay .grid b{color:var(--ink-soft);font-weight:500;}.pay .grid .v{color:var(--ink);font-weight:500;}
+  .pay .iban{font-variant-numeric:tabular-nums;letter-spacing:.4px;}
   .foot{margin-top:30px;display:flex;justify-content:space-between;align-items:flex-end;padding-top:14px;border-top:1px solid var(--line);}
   .foot .thanks{font-family:'Caveat',cursive;font-size:21px;color:var(--gold-deep);}
-  .f{font:inherit;color:inherit;background:transparent;border:none;border-radius:4px;padding:1px 3px;margin:-1px -3px;width:100%;}
+  .foot .site{font-size:11px;color:var(--ink-soft);text-align:right;min-width:250px;}
+  .f{font:inherit;color:inherit;background:transparent;border:none;border-radius:4px;padding:1px 3px;margin:-1px -3px;width:100%;transition:background .12s,box-shadow .12s;}
   .f:hover{background:#f0e8d6;}.f:focus{outline:none;background:#fff;box-shadow:0 0 0 2px var(--gold);}
-  textarea.f{resize:none;overflow:hidden;line-height:inherit;display:block;}
-  input.f.amount{text-align:right;font-variant-numeric:tabular-nums;}
-  .f.right{text-align:right;}
-  ::placeholder{color:#c4b89a;font-style:italic;}
-  @media print{@page{size:A4;margin:0;}body{background:#fff;padding:0;}.toolbar{display:none!important;}.sheet-wrap{padding:0;}.sheet{box-shadow:none;width:auto;min-height:auto;}.del,.addline{display:none!important;}}
+  textarea.f{resize:none;overflow:hidden;line-height:inherit;display:block;}input.f.amount{text-align:right;font-variant-numeric:tabular-nums;}
+  .f.right{text-align:right;}.doc .v input.f{font:inherit;}::placeholder{color:#c4b89a;font-style:italic;}
+  @media(max-width:680px){.midgrid{grid-template-columns:1fr;gap:18px;}.head{flex-direction:column;}.doc{text-align:left;}.doc .rows .r{justify-content:flex-start;}.sheet{padding:16mm 12mm;}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+  @media print{@page{size:A4;margin:0;}body{background:#fff;padding:0;}.toolbar{display:none!important;}.sheet-wrap{padding:0;}.sheet{box-shadow:none;width:auto;min-height:auto;border-top:5px solid var(--gold);}.f:hover,.f:focus{background:transparent!important;box-shadow:none!important;}.del,.addline{display:none!important;}.totals .row.grand{-webkit-print-color-adjust:exact;print-color-adjust:exact;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 </style>
 </head>
 <body>
@@ -79,14 +80,12 @@
 </div>
 <div class="sheet-wrap">
   <div class="sheet" id="sheet">
-    <div class="logo-mast"><img src="" alt="Deli Santa Maria" onerror="this.style.display='none'"></div>
+    <div class="bsd" contenteditable="true">בס״ד</div>
+    <div class="logo-mast"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='190' fill='none' stroke='%232c271f' stroke-width='5'/%3E%3Ctext font-family='sans-serif' font-weight='bold' fill='%232c271f'%3E%3CtextPath href='%23c'%3EFRESCO%2C SANO Y FELIZ %E2%80%A2 FRESCO%2C SANO Y FELIZ %E2%80%A2%3C/textPath%3E%3C/text%3E%3Cdefs%3E%3Cpath id='c' d='M200%2C200 m-170%2C0 a170%2C170 0 1%2C1 340%2C0 a170%2C170 0 1%2C1 -340%2C0'/%3E%3C/defs%3E%3Ctext x='200' y='170' text-anchor='middle' font-family='sans-serif' font-size='60' font-weight='bold' fill='%232c271f'%3EDeli%3C/text%3E%3Ctext x='200' y='240' text-anchor='middle' font-family='sans-serif' font-size='50' font-weight='bold' fill='%232c271f'%3ESanta%3C/text%3E%3Ctext x='200' y='300' text-anchor='middle' font-family='sans-serif' font-size='50' font-weight='bold' fill='%232c271f'%3EMaria%3C/text%3E%3C/svg%3E" alt="Deli Santa Maria"></div>
     <div class="head">
       <div class="issuer">
         <input class="f owner" id="i_owner" value="Shiri Keret" style="font-size:22px;">
-        <div class="meta">
-          NIF <input class="f" id="i_nif" value="B10837268" style="width:auto;display:inline;">
-          <textarea class="f" id="i_addr" rows="2">Polígono 07, Parcela 67, C.P. 07141 Marratxí, Mallorca, España</textarea>
-        </div>
+        <div class="meta">NIF <input class="f" id="i_nif" value="B10837268" style="width:auto;display:inline;"><textarea class="f" id="i_addr" rows="2">Polígono 07, Parcela 67, C.P. 07141 Marratxí, Mallorca, España</textarea></div>
       </div>
       <div class="doc">
         <div class="label">Factura</div>
@@ -100,14 +99,14 @@
     <div class="midgrid">
       <div class="client">
         <div class="eyebrow">Facturar a</div>
-        <input class="f cname" id="c_name" value="Mills and Honey S.L.">
+        <input class="f cname" id="c_name" value="Mills and Honey S.L." placeholder="Nombre del cliente">
         <div class="cline">CIF <input class="f" id="c_cif" value="B16536856" style="width:auto;display:inline;"></div>
-        <textarea class="f cline" id="c_addr" rows="2">Carrer Joan Rosselló de Son Forteza 36, bajos
+        <textarea class="f cline" id="c_addr" rows="2" placeholder="Dirección">Carrer Joan Rosselló de Son Forteza 36, bajos
 07340 Alaró, Mallorca</textarea>
       </div>
       <div class="concept">
         <div class="eyebrow">Concepto</div>
-        <input class="f" id="c_concept" value="Evento de empresa">
+        <input class="f cval" id="c_concept" value="Evento de empresa" placeholder="Concepto / contrato">
       </div>
     </div>
     <table class="items">
@@ -125,15 +124,15 @@
       <div class="grid">
         <b>Beneficiario</b><span class="v"><input class="f" id="p_benef" value="Shiri Keret — Deli Santa Maria"></span>
         <b>Banco</b><span class="v"><input class="f" id="p_bank" value="CaixaBank"></span>
-        <b>IBAN</b><span class="v"><input class="f" id="p_iban" value="ES98 2100 9019 0402 0051 1200"></span>
-        <b>SWIFT/BIC</b><span class="v"><input class="f" id="p_swift" value="CAIXESBBXXX"></span>
+        <b>IBAN</b><span class="v"><input class="f iban" id="p_iban" value="ES98 2100 9019 0402 0051 1200"></span>
+        <b>SWIFT / BIC</b><span class="v"><input class="f" id="p_swift" value="CAIXESBBXXX"></span>
       </div>
     </div>
     <div class="foot">
       <div class="thanks">¡Gracias!</div>
       <div class="site">
         <input class="f right" id="f_site" value="deli-caffe.com" style="font-weight:600;color:var(--gold-deep);">
-        <div><input class="f right" id="f_note" value="Santa María del Camí · Mallorca"></div>
+        <div><input class="f right" id="f_note" value="Santa María del Camí · Mallorca" placeholder="contacto"></div>
       </div>
     </div>
   </div>
@@ -143,19 +142,20 @@ const eur=new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'});
 const $=id=>document.getElementById(id);
 const body=$('itemsBody');
 function parseNum(s){if(s==null)return 0;s=String(s).trim().replace(/\s|€/g,'').replace(/\.(?=\d{3}\b)/g,'').replace(',','.');const n=parseFloat(s);return isNaN(n)?0:n;}
-function addRow(desc='',amount=''){const tr=document.createElement('tr');tr.innerHTML='<td><button class="del">\u00D7</button></td><td><textarea class="f" rows="1"></textarea></td><td class="amt"><input class="f amount" inputmode="decimal" placeholder="0,00"></td>';tr.querySelector('textarea').value=desc;tr.querySelector('input.amount').value=amount;tr.querySelector('.del').onclick=()=>{tr.remove();recalc();};tr.querySelector('input.amount').addEventListener('input',recalc);body.appendChild(tr);autoGrowAll();}
+function addRow(desc='',amount=''){const tr=document.createElement('tr');tr.innerHTML='<td><button class="del">×</button></td><td><textarea class="f" rows="1" placeholder="Descripción del servicio"></textarea></td><td class="amt"><input class="f amount" inputmode="decimal" placeholder="0,00"></td>';tr.querySelector('textarea').value=desc;tr.querySelector('input.amount').value=amount;tr.querySelector('.del').onclick=()=>{tr.remove();recalc();};tr.querySelector('input.amount').addEventListener('input',recalc);body.appendChild(tr);autoGrowAll();}
 function recalc(){const rate=parseNum($('vatRate').value)/100;const incl=$('inclVat').checked;let sum=0;body.querySelectorAll('input.amount').forEach(i=>sum+=parseNum(i.value));let base,vat,total;if(incl){total=sum;base=total/(1+rate);vat=total-base;}else{base=sum;vat=base*rate;total=base+vat;}$('t_base').textContent=eur.format(base);$('t_vat').textContent=eur.format(vat);$('t_total').textContent=eur.format(total);$('t_vatlbl').textContent='IVA ('+(parseNum($('vatRate').value))+'%)';}
 function autoGrow(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
 function autoGrowAll(){document.querySelectorAll('textarea.f').forEach(autoGrow);}
 document.addEventListener('input',e=>{if(e.target.matches('textarea.f'))autoGrow(e.target);});
 const ISSUER_KEYS=['i_owner','i_nif','i_addr','p_benef','p_bank','p_iban','p_swift','f_site','f_note','vatRate'];
-function saveIssuer(){try{const data={};ISSUER_KEYS.forEach(k=>data[k]=$(k).value);data.lastNum=$('d_num').value;localStorage.setItem('deliFacturaIssuer',JSON.stringify(data));}catch(e){}}
+function saveIssuer(){try{const data={};ISSUER_KEYS.forEach(k=>data[k]=$(k).value);data.lastNum=$('d_num').value;localStorage.setItem('deliFacturaIssuer',JSON.stringify(data));flash($('saveBtn'),'Guardado ✓');}catch(e){flash($('saveBtn'),'No disponible');}}
 function loadIssuer(){try{const raw=localStorage.getItem('deliFacturaIssuer');if(!raw)return;const data=JSON.parse(raw);ISSUER_KEYS.forEach(k=>{if(data[k]!=null&&$(k))$(k).value=data[k];});}catch(e){}}
 function nextNumber(cur){const m=String(cur).match(/^(.*?)(\d+)(\D*)$/);if(!m)return cur;const n=(parseInt(m[2],10)+1).toString().padStart(m[2].length,'0');return m[1]+n+m[3];}
+function flash(btn,txt){const o=btn.textContent;btn.textContent=txt;setTimeout(()=>btn.textContent=o,1400);}
+function newInvoice(){$('d_num').value=nextNumber($('d_num').value);$('d_date').value=todayES();$('c_name').value='';$('c_cif').value='';$('c_addr').value='';$('c_concept').value='';body.innerHTML='';addRow();recalc();autoGrowAll();}
 function todayES(){const d=new Date();return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();}
 $('vatRate').addEventListener('input',recalc);$('inclVat').addEventListener('change',recalc);
-$('addBtn').onclick=()=>addRow();$('printBtn').onclick=()=>window.print();
-$('saveBtn').onclick=saveIssuer;$('newBtn').onclick=()=>{$('d_num').value=nextNumber($('d_num').value);$('d_date').value=todayES();$('c_name').value='';$('c_cif').value='';$('c_addr').value='';$('c_concept').value='';body.innerHTML='';addRow();recalc();autoGrowAll();};
+$('addBtn').onclick=()=>addRow();$('printBtn').onclick=()=>window.print();$('saveBtn').onclick=saveIssuer;$('newBtn').onclick=newInvoice;
 loadIssuer();$('d_date').value=todayES();addRow('Catering para un evento','202,27');recalc();setTimeout(autoGrowAll,200);
 </script>
 </body>
